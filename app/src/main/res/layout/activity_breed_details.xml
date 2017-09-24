@@ -17,6 +17,7 @@
                 android:id="@+id/main_rv"
                 app:itemViewBinder="@{breedDetailsViewModel.mTemplates}"
                 app:items="@{breedDetailsViewModel.mItems}"
+                app:itemClickListener="@{breedDetailsViewModel.getItemClickListener()}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

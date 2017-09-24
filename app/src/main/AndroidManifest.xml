@@ -26,5 +26,9 @@
                 android:name=".view.breeddetails.BreedDetailsActivity"
                 android:screenOrientation="portrait" />
 
+        <activity
+                android:name=".view.photo.PhotoActivity"
+                android:screenOrientation="portrait" />
+
     </application>
 </manifest>

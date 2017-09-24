@@ -1,9 +1,13 @@
 package com.blackbelt.dogkotlin.view.breeddetails.viewmodel
 
+import android.content.Intent
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.view.ViewCompat
+import android.view.View
 import android.widget.Toast
 import com.blackbelt.dogkotlin.BR
 import com.blackbelt.dogkotlin.R
@@ -12,9 +16,14 @@ import com.blackbelt.dogkotlin.api.DogBreeds
 import com.blackbelt.dogkotlin.api.IApiManager
 import com.blackbelt.dogkotlin.bindable.android.AndroidBaseItemBinder
 import com.blackbelt.dogkotlin.bindable.android.DogBaseViewModel
+import com.blackbelt.dogkotlin.bindable.android.RecyclerViewClickListener
+import com.blackbelt.dogkotlin.view.photo.FULL_SCREEN_PHOTO_INDEX
+import com.blackbelt.dogkotlin.view.photo.FULL_SCREEN_PHOTO_KEY
+import com.blackbelt.dogkotlin.view.photo.PhotoActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import javax.inject.Inject
+
 
 class BreedDetailsViewModel @Inject constructor(apiManager: IApiManager, breed: DogBreed?) : DogBaseViewModel() {
 
@@ -56,6 +65,25 @@ class BreedDetailsViewModel @Inject constructor(apiManager: IApiManager, breed: 
                     }
                 })
     }
+
+    fun getItemClickListener(): RecyclerViewClickListener {
+        return object : RecyclerViewClickListener {
+            override fun onItemClick(view: View, any: Any) {
+                ViewCompat.setTransitionName(view, mItems.indexOf(any).toString())
+
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        getParentActivity(),
+                        view,
+                        mItems.indexOf(any).toString())
+
+                val intent = Intent(getParentActivity(), PhotoActivity::class.java)
+                intent.putExtra(FULL_SCREEN_PHOTO_INDEX, mItems.indexOf(any).toString())
+                intent.putExtra(FULL_SCREEN_PHOTO_KEY, (any as DogBreed).breedImageUrl)
+                getParentActivity()?.startActivity(intent, options.toBundle())
+            }
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
