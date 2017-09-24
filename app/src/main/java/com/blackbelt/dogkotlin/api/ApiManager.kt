@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiManager(baseUrl: String, gson: Gson) : IApiManager {
 
-    var mApiService: ApiService;
+    private var mApiService: ApiService;
 
     init {
         mApiService = getApiService(baseUrl, gson)
@@ -37,4 +37,6 @@ class ApiManager(baseUrl: String, gson: Gson) : IApiManager {
     override fun listAllBreeds(): Single<DogBreeds> = mApiService.listAllBreeds()
 
     override fun randomBreedImage(brandName: String): Single<DogRandomImage> = mApiService.randomBreedImage(brandName)
+
+    override fun loadBreedImages(brandName: String): Single<DogBreeds> = mApiService.breedImages(brandName)
 }

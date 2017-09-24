@@ -18,6 +18,7 @@ abstract class BaseBindableActivity : BaseInjectableActivity() {
         mBinding = DataBindingUtil.setContentView<ViewDataBinding>(this, layoutRes);
         mBinding.setVariable(bindingVariable, viewModel)
         viewModel.onCreate(null)
+        viewModel.setParentActivity(this)
     }
 
     override fun onStart() {
@@ -46,6 +47,7 @@ abstract class BaseBindableActivity : BaseInjectableActivity() {
         if (mDogBaseViewModel is IActivityLifecycle) {
             (mDogBaseViewModel as IActivityLifecycle).onDestroy()
         }
+        mDogBaseViewModel?.setParentActivity(null)
     }
 
 }

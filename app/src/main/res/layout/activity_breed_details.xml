@@ -4,8 +4,8 @@
     <data>
 
         <variable
-                name="mainViewModel"
-                type="com.blackbelt.dogkotlin.view.MainActivityViewModel" />
+                name="breedDetailsViewModel"
+                type="com.blackbelt.dogkotlin.view.breeddetails.viewmodel.BreedDetailsViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,9 +15,8 @@
 
         <com.blackbelt.dogkotlin.bindable.android.ClickableRecyclerView
                 android:id="@+id/main_rv"
-                app:itemViewBinder="@{mainViewModel.mTemplates}"
-                app:itemClickListener="@{mainViewModel.getItemClickListener()}"
-                app:items="@{mainViewModel.mItems}"
+                app:itemViewBinder="@{breedDetailsViewModel.mTemplates}"
+                app:items="@{breedDetailsViewModel.mItems}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

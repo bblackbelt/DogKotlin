@@ -35,6 +35,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
+                android:visibility="@{dogBreed.isTitleVisible()}"
                 android:gravity="center_horizontal"
                 android:text="@{dogBreed.mBreedName}"
                 android:textSize="15sp"

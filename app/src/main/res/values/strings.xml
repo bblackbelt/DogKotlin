@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DogKotlin</string>
+    <string name="oops_something_went_wrong">Oops, something went really wrong</string>
 </resources>

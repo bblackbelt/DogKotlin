@@ -30,4 +30,9 @@ fun setItemViewBinder(recyclerView: RecyclerView, templates: Map<Class<*>, Andro
     setItems(recyclerView, items);
 }
 
-
+@BindingAdapter("itemClickListener")
+fun setItemClickListener(recyclerView: RecyclerView, listener: RecyclerViewClickListener) {
+    if (recyclerView is ClickableRecyclerView) {
+        recyclerView.mRecyclerViewClickListener = listener;
+    }
+}

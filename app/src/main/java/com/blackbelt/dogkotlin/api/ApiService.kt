@@ -11,4 +11,7 @@ interface ApiService {
 
     @GET("breed/{breed_name}/images/random")
     fun randomBreedImage(@Path("breed_name") brandName: String): Single<DogRandomImage>;
+
+    @GET("breed/{breed_name}/images")
+    fun breedImages(@Path("breed_name") brandName: String): Single<DogBreeds>
 }
