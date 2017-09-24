@@ -1,8 +1,6 @@
 package com.blackbelt.dogkotlin.utils
 
 import android.databinding.BindingAdapter
-import android.graphics.drawable.BitmapDrawable
-import android.support.v7.graphics.Palette
 import android.text.TextUtils
 import android.widget.ImageView
 import com.squareup.picasso.Callback
@@ -10,16 +8,15 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 
 
-fun ImageView.generatePalette(listener: (Palette) -> Unit) {
-    Palette.from((this.drawable as BitmapDrawable).bitmap).generate(listener)
-}
-
 @BindingAdapter("imageUrl")
 fun ImageView.loadUrl(url: String?) {
     if (TextUtils.isEmpty(url)) {
         return
     }
-    Picasso.with(this.context).load(url).into(this)
+    var res = context.resources;
+    layoutParams.width = res.displayMetrics.widthPixels / 3
+    layoutParams.height = res.displayMetrics.widthPixels / 3
+    Picasso.with(this.context).load(url).resize(layoutParams.width, layoutParams.height).centerCrop().into(this)
 }
 
 inline fun ImageView.loadUrl(url: String, callback: PicassoCallback.() -> Unit) {

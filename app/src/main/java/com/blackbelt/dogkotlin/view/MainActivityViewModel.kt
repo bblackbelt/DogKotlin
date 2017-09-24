@@ -65,7 +65,6 @@ class MainActivityViewModel @Inject constructor(apiManager: IApiManager) : DogBa
                 })
     }
 
-    @Synchronized
     fun decorateWithImage(dogBreed: DogBreed) {
         mCompositeDisposable.add(mApiManager.randomBreedImage(dogBreed.mBreedName)
                 .observeOn(AndroidSchedulers.mainThread())
